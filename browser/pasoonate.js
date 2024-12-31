@@ -1107,6 +1107,10 @@ class JalaliCalendar extends Calendar {
         let cyear = this.mod(depoch, 1029983);        
     	let ycycle, aux1, aux2;
 
+		if (cyear === 339309) {
+			cyear--;
+		}
+
         if (cyear == 1029982) {
             ycycle = 2820;
         } else {
@@ -1155,7 +1159,7 @@ class JalaliCalendar extends Calendar {
 
         const remain = year % 33;
 
-	    return year < 1343 ? remain in validRemainValueBefore1343 : remain in validRemainValueAfter1343;
+	    return year < 1343 ? validRemainValueBefore1343.includes(remain) : validRemainValueAfter1343.includes(remain);
     }
 }
 
